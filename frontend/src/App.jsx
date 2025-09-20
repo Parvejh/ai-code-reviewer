@@ -50,7 +50,9 @@ const App = () => {
   const [code, setCode] = useState(``)
   const [review, setReview] = useState('')
   const [loading, setLoading] = useState(false)
-  const [mobileView, setMobileView] = useState('both') // 'editor' | 'review' | 'both'
+  const [mobileView, setMobileView] = useState('both')
+  const BACKEND_ORIGIN = import.meta.BACKEND_ORIGIN || "http://localhost:3000";
+
 
   useEffect(()=>{
     prism.highlightAll()
@@ -59,7 +61,7 @@ const App = () => {
   async function reviewCode(){
     setLoading(true)
     try{
-      const response = await axios.post('http://localhost:3000/ai/get-review',{code})
+      const response = await axios.post(`${BACKEND_ORIGIN}/ai/get-review`,{code})
       setReview(response.data)
     }catch(e){
       console.log("Error in fetching response from API : ", e)
