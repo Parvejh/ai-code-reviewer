@@ -5,6 +5,7 @@ const cors = require('cors');
 const app = express();
 const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN;
 
+
 app.use(cors({
     origin:FRONTEND_ORIGIN,
     methods:['GET','POST']
